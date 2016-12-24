@@ -16,8 +16,6 @@ init();
 animate();
 
 function init() {
-    //img.src = '../../lib/stickPerson.jpg';
-    //img.src = 'http://www.html5canvastutorials.com/demos/assets/darth-vader.jpg';
     var canvas = document.querySelector("#c");
     context = canvas.getContext( '2d' );
     startTime = new Date().getTime();
