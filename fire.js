@@ -1,15 +1,16 @@
 /******* Me Playing with previous animation**********/
 var context, time, startTime, changeTime;
 var catcherXPosition = 200;
-var catcherYPosition = 400;
+var catcherYPosition = 450;
 var ballX = 250;
-var ballY = 0;
+var ballY = 50;
 var ballSpeed = 3;
 var catcherSpeed = 20;
 var score = 0;
 var dead = 0;
 var gameIsUnderway = true;
-var img = new Image();
+var background = new Image();
+background.src = "row-of-buildings.jpg";
 
 // Begin Game
 init();
@@ -50,7 +51,7 @@ function animate() {
 
         console.log("score!!!");
         score++;
-        ballY = 0;
+        ballY = 50;
         ballX = _.random(50, 900);
 
         //Increase speed every 10 points
@@ -61,7 +62,7 @@ function animate() {
 
     // Check if the ball left the screen
     if (ballY > 475) {
-        ballY = 0;
+        ballY = 50;
         ballX = _.random(50, 900);
         console.log('death!')
         dead++;
@@ -83,8 +84,13 @@ function animate() {
 function draw() {
 
     /***** Put a grey background on the screen *****/
-    context.fillStyle = 'rgb(245,245,245)';
-    context.fillRect(0, 0, 1000, 500);
+    //context.fillStyle = 'rgb(245,245,245)';
+    //context.fillRect(0, 0, 1000, 500);
+    //background.onload = function(){
+
+    /****** Draw Buildings and stretch to size *******/
+        context.drawImage(background,0,0, 1000, 500);
+    //}​
 
     /******** Draw Moving Red Dot **********/
     ballY = ballY + ballSpeed;
@@ -104,9 +110,10 @@ function draw() {
 
 
     /*********** Draw a rectangle that is controlled by the user *****/
-    context.fillStyle = 'rgb(0,0,0)';
+    context.fillStyle = 'white';
     context.beginPath();
-    context.strokeRect(catcherXPosition, catcherYPosition, 50, 10);
+    context.fillRect(catcherXPosition, catcherYPosition, 50, 20);
+
 
     //Update scoreboard
     context.font = "24pt Impact";
@@ -124,4 +131,13 @@ function draw() {
 function newGame() {
     console.log('refresh');
     window.location.reload();
+}
+
+function goLeft() {
+    catcherXPosition -= catcherSpeed;
+
+}
+
+function goRight() {
+    catcherXPosition += catcherSpeed;
 }
